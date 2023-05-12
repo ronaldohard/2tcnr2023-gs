@@ -1,4 +1,4 @@
-FROM python:3.6.1-alpine
+FROM python:latest
 RUN pip install --upgrade pip
 RUN pip install flask
 RUN pip install Flask-RESTful
