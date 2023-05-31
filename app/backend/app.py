@@ -84,6 +84,11 @@ def get_alunos():
     alunos = fetch_alunos()
     return jsonify(alunos)
 
+@app.route('/alunos2', methods=['GET'])
+def get_alunos():
+    alunos = fetch_alunos()
+    return jsonify(alunos)
+
 
 @app.route('/')
 def index():
