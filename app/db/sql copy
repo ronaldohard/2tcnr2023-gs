@@ -1,0 +1,37 @@
+-- Criar a base de dados db_alunos
+CREATE DATABASE db_alunos;
+
+-- Usar a base de dados db_alunos
+USE db_alunos;
+
+-- Criar a tabela tb_alunos
+CREATE TABLE tb_alunos (
+    aluno_matricula INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_nome VARCHAR(100),
+    aluno_email VARCHAR(100),
+    aluno_telefone VARCHAR(20),
+    aluno_endereco VARCHAR(100),
+    aluno_curso VARCHAR(50),
+    aluno_turma VARCHAR(20),
+    aluno_ano INT
+);
+
+-- 
+
+USE db_alunos;
+
+-- Inserir 10 registros de alunos aleatórios
+INSERT INTO tb_alunos (aluno_nome, aluno_email, aluno_telefone, aluno_endereco, aluno_curso, aluno_turma, aluno_ano)
+SELECT 
+    CONCAT('Aluno ', RAND()), 
+    CONCAT('aluno', aluno_matricula, '@exemplo.com'), 
+    CONCAT('123456789', aluno_matricula),
+    CONCAT('Endereco ', aluno_matricula),
+    CONCAT('Curso ', FLOOR(RAND() * 5) + 1),
+    CONCAT('Turma ', FLOOR(RAND() * 3) + 1),
+    FLOOR(RAND() * 4) + 2020
+FROM
+    (SELECT @row := @row + 1 AS aluno_matricula
+    FROM
+        (SELECT @row := 0) r,
+        (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10) n) m;

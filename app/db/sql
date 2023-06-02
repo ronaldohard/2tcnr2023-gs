@@ -1,37 +1,42 @@
--- Criar a base de dados db_alunos
-CREATE DATABASE db_alunos;
+-- Criar a base de dados db_doacoes
+CREATE DATABASE db_doacoes;
 
--- Usar a base de dados db_alunos
-USE db_alunos;
-
--- Criar a tabela tb_alunos
-CREATE TABLE tb_alunos (
-    aluno_matricula INT AUTO_INCREMENT PRIMARY KEY,
-    aluno_nome VARCHAR(100),
-    aluno_email VARCHAR(100),
-    aluno_telefone VARCHAR(20),
-    aluno_endereco VARCHAR(100),
-    aluno_curso VARCHAR(50),
-    aluno_turma VARCHAR(20),
-    aluno_ano INT
+-- Usar a base de dados db_doacoes
+USE db_doacoes;
+drop table tb_doacoes;
+-- Criar a tabela tb_doacoes
+CREATE TABLE tb_doacoes (
+    doacao_id INT AUTO_INCREMENT PRIMARY KEY,
+    doacao_nome VARCHAR(100),
+    doacao_email VARCHAR(100),
+    doacao_telefone VARCHAR(20),
+    doacao_endereco VARCHAR(100),
+    doacao_descricao VARCHAR(50),
+    doacao_data date,
+    doacao_status VARCHAR(50)
 );
 
 -- 
 
-USE db_alunos;
 
--- Inserir 10 registros de alunos aleatórios
-INSERT INTO tb_alunos (aluno_nome, aluno_email, aluno_telefone, aluno_endereco, aluno_curso, aluno_turma, aluno_ano)
+-- Inserir 10 registros de doacoes aleatórios
+INSERT INTO tb_doacoes (doacao_nome, doacao_email, doacao_telefone, doacao_endereco, doacao_descricao, doacao_data, doacao_status)
 SELECT 
-    CONCAT('Aluno ', RAND()), 
-    CONCAT('aluno', aluno_matricula, '@exemplo.com'), 
-    CONCAT('123456789', aluno_matricula),
-    CONCAT('Endereco ', aluno_matricula),
-    CONCAT('Curso ', FLOOR(RAND() * 5) + 1),
-    CONCAT('Turma ', FLOOR(RAND() * 3) + 1),
-    FLOOR(RAND() * 4) + 2020
+    CONCAT('Fulano Sobre Nome ', RAND()), 
+    CONCAT('contato', doacao_id, '@exemplo.com'), 
+    CONCAT('(11) 91234-5678', doacao_id),
+    CONCAT('Endereco: Rua ', doacao_id),
+    CONCAT('Descricao: ', FLOOR(RAND() * 5) + 1),
+    CONCAT('Data ', now()),
+    CONCAT('Status ', doacao_id)
 FROM
-    (SELECT @row := @row + 1 AS aluno_matricula
+    (SELECT @row := @row + 1 AS doacao_id
     FROM
         (SELECT @row := 0) r,
         (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10) n) m;
+        
+        select * from tb_doacoes;
+update tb_doacoes set doacao_data = now();        
+
+select * from tb_doacoes;        
+        
