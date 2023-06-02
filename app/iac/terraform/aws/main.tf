@@ -11,6 +11,7 @@ terraform {
 # REGION
 provider "aws" {
     region = "us-east-1"
+    shared_credentials_file = ".aws/credentials"
 }
 
 # VPC
@@ -170,7 +171,7 @@ data "template_file" "user_data" {
 
 resource "aws_launch_template" "lt_app_notify" {
     name                   = "lt_app_notify"
-    image_id               = "ami-02e136e904f3da870"
+    image_id               = "ami-053b0d53c279acc90"
     instance_type          = "t2.micro"
     vpc_security_group_ids = [aws_security_group.sg_pub.id]
     key_name               = "vockey"
@@ -299,7 +300,7 @@ resource "aws_db_parameter_group" "rds_vpc10_pg" {
 resource "aws_db_instance" "rds_db_notifier" {
     identifier             = "rds-db-notifier"
     engine                 = "mysql"
-    engine_version         = "8.0.23"
+    engine_version         = "8.0.32"
     instance_class         = "db.t3.small"
     storage_type           = "gp2"
     allocated_storage      = "20"
