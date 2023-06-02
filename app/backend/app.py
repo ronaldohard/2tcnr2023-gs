@@ -9,9 +9,9 @@ cors = CORS(app, resources={r"/cadastro": {"origins": "*"}})
 
 
 db_config = {
-    'host': '',
-    'user': '',
-    'password': '',
+    'host': 'gs-devops-db.cf8yaxjdkigz.us-east-1.rds.amazonaws.com',
+    'user': 'admin',
+    'password': 'FiapAluno2023!',
     'database': 'db_alunos'
 }
 
