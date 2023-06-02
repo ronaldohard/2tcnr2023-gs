@@ -85,7 +85,7 @@ def get_alunos():
     return jsonify(alunos)
 
 @app.route('/alunos2', methods=['GET'])
-def get_alunos():
+def get_alunos2():
     alunos = fetch_alunos()
     return jsonify(alunos)
 
